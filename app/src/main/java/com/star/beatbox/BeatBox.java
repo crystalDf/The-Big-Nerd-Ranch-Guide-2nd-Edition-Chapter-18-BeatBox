@@ -19,21 +19,22 @@ public class BeatBox {
 
     public BeatBox(Context context) {
         mAssetManager = context.getAssets();
+        loadSounds();
     }
 
     private void loadSounds() {
-        String[] soundNames = new String[0];
+        String[] soundNames;
         try {
             soundNames = mAssetManager.list(SOUNDS_FOLDER);
+
+            for (String filename : soundNames) {
+                String assetPath = SOUNDS_FOLDER + "/" + filename;
+                Sound sound = new Sound(assetPath);
+                mSounds.add(sound);
+            }
             Log.i(TAG, "Found " + soundNames.length + " sounds");
         } catch (IOException e) {
             Log.e(TAG, "Could not list assets", e);
-        }
-
-        for (String filename : soundNames) {
-            String assetPath = SOUNDS_FOLDER + "/" + filename;
-            Sound sound = new Sound(assetPath);
-            mSounds.add(sound);
         }
     }
 
