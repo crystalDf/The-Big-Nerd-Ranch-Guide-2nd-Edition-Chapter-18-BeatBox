@@ -32,6 +32,7 @@ public class BeatBox {
                 Sound sound = new Sound(assetPath);
                 mSounds.add(sound);
             }
+
             Log.i(TAG, "Found " + soundNames.length + " sounds");
         } catch (IOException e) {
             Log.e(TAG, "Could not list assets", e);
